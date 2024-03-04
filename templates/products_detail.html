@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {%for prod in product%}
+        {{prod.title}}
+        <img alt="" src="{{prod.image.url}}" class="league__logo">
+        {{prod.price}}
+    {%endfor%}
+</body>
+</html>

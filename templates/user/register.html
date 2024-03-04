@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block content%}
+
+
+
+<form method="post" class="login-form">
+
+      <h2>Kayıt Ol</h2>
+
+      {% csrf_token %}
+      {{ form.as_div }}
+      <button type="submit">Kayıt Ol</button>
+</form>
+
+
+{% endblock %}

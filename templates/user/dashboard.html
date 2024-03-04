@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block content%}
+
+
+
+<h2>Kullanıcı Bilgileri</h2>
+
+
+
+<main class="lig-section">
+    <section class="hero-lig">
+        <div class="lig-main">
+            <h1>{{ request.user.username }}</h1>
+        </div>
+    </section>
+</main>
+
+{% endblock %}
