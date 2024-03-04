@@ -5,10 +5,14 @@
     <title>Title</title>
 </head>
 <body>
-    {%for prod in product%}
-        {{prod.title}}
-        <img alt="" src="{{prod.image.url}}" class="league__logo">
-        {{prod.price}}
-    {%endfor%}
+        <h2>{{ product.name }} Details</h2>
+        <p>Category: {{ product.category }}</p>
+        <p>Price: ${{ product.price }}</p>
+        <p>Description: {{ product.description }}</p>
+
+        <form method="post" action="{% url 'add_to_cart' products_slug=product.slug %}">
+            {% csrf_token %}
+            <button type="submit">Add to Cart</button>
+        </form>
 </body>
 </html>

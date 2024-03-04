@@ -6,7 +6,7 @@
 </head>
 <body>
     {%for prod in product%}
-    <a href="{% url 'products_detail' slug=prod.slug %}">{{prod.title}}</a>
+    <a href="{% url 'products_detail' products_slug=prod.slug %}">{{prod.title}}</a>
     {%endfor%}
 </body>
 </html>
