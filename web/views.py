@@ -5,6 +5,10 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import CustomUserCreationForm, CustomAuthenticationForm
+from django.db import models
+from django.shortcuts import render
+from .utils import calculate_total_price
+
 
 def homepage(request):
     return render(request,'homepage.html',)
@@ -62,26 +66,25 @@ def user_logout(request):
 
 @login_required
 def view_cart(request):
-    if request.user.is_authenticated:
-        cart, created = Cart.objects.get_or_create(user=request.user)
-        cart_items = cart.items.all()
-        return render(request, 'cart.html', {'cart_items': cart_items,})
-    else:
-        redirect('homepage')
-    return render(request, 'cart.html', {'cart': user_cart})
+    cart, created = Cart.objects.get_or_create(user=request.user)
+    total_price = calculate_total_price(cart)
+    cart_items = CartItem.objects.filter(cart=cart)
+    return render(request, 'cart.html', {'cart_items': cart_items, 'total_price': total_price})
 
 
 
+@login_required
 def add_to_cart(request, products_slug):
     product = get_object_or_404(Products, slug=products_slug)
     cart, created = Cart.objects.get_or_create(user=request.user)
     cart_item, item_created = CartItem.objects.get_or_create(cart=cart, product=product)
 
-    if not item_created:
-        cart_item.quantity += 1
-        cart_item.save()
+    quantity = int(request.POST.get('quantity', 1))
 
-    return render(request, 'cart.html', {'cart': cart})
+    if not item_created:
+        cart_item.quantity += quantity
+        cart_item.save()
+    return redirect('view_cart')
 
 @login_required
 def remove_from_cart(request, products_slug):
@@ -95,5 +98,4 @@ def remove_from_cart(request, products_slug):
     else:
         cart_item.delete()
 
-    return render(request, 'cart.html', {'cart': cart})
-
+    return redirect('view_cart')
