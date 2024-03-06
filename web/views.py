@@ -25,6 +25,10 @@ def products_details(request,products_slug):
     return render(request, 'pages/products_detail.html',{'product': product,})
 
 
+def contact(request):
+    return render(request,'pages/contact.html')
+
+
 
 def user_login(request):
     if request.method == 'POST':

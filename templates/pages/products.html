@@ -29,12 +29,8 @@
                                                         <figure class="product__image--holder">
                                                             <img src="{{prod.image.url}}" alt="Product">
                                                         </figure>
-                                                        <a href="product-details.html" class="product__overlay"></a>
+                                                        <a href="{% url 'products_detail' products_slug=prod.slug %}" class="product__overlay"></a>
                                                         <div class="product__action">
-                                                            <a data-bs-toggle="modal" data-bs-target="#productModal" class="action-btn">
-                                                                <i class="fa fa-eye"></i>
-                                                                <span class="sr-only">Gözat</span>
-                                                            </a>
                                                             <a href="cart.html" class="action-btn">
                                                                 <i class="fa fa-shopping-cart"></i>
                                                                 <span class="sr-only">Sepete Ekle</span>
@@ -44,7 +40,7 @@
                                                     <div class="product__info">
                                                         <div class="product__info--left">
                                                             <h3 class="product__title">
-                                                                <a href="product-details.html">{{prod.title}}</a>
+                                                                <a href="{% url 'products_detail' products_slug=prod.slug %}">{{prod.title}}</a>
                                                             </h3>
                                                             <div class="product__price">
                                                                 <span class="money">{{prod.price}}</span>

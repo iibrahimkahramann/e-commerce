@@ -1,22 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-        <h2>{{ product.name }} Details</h2>
-        <p>Category: {{ product.category }}</p>
-        <p>Price: ${{ product.price }}</p>
-        <p>Description: {{ product.description }}</p>
-        <p>İmage: <img src="{{product.image.url}}" alt=""></p>
+{% extends 'base.html' %}
+{% load static %}
+{%block content%}
 
-        <form method="post" action="{% url 'add_to_cart' products_slug=product.slug %}">
-            {% csrf_token %}
-            <input type="number" name="quantity" value="1" min="1" max="10"> <!-- Örnek: 1 ile 10 arasında bir değer -->
-            <button type="submit">Sepete Ekle</button>
-        </form>
+<!-- Breadcrumb area Start -->
+        <section class="page-title-area bg-color" data-bg-color="#f4f4f4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h1 class="page-title">Ürün Detay</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Breadcrumb area End -->
 
+        <!-- Main Content Wrapper Start -->
+        <div class="main-content-wrapper">
+            <div class="page-content-inner pt--80 pt-md--60">
+                <div class="container">
+                    <div class="row g-0 mb--75 mb-md--57">
+                        <div class="col-lg-7 product-main-image">
+                            <div class="product-image">
+                                <div class="product-gallery">
+                                    <div class="product-gallery__large-image">
+                                        <div class="product-gallery__wrapper">
+                                            <div class="row gutter-10">
+                                                <div class="col-12 mb--10">
+                                                    <figure class="product-gallery__image">
+                                                        <img src="{{product.image.url}}"
+                                                            alt="Product">
+                                                    </figure>
+                                                </div>
+                                            </div>
+                                            <div class="product-gallery__actions">
+                                                <button class="action-btn btn-zoom-popup"><i
+                                                        class="fa fa-eye"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 offset-xl-1 col-lg-5 product-main-details mt-md--40" id="sticky-sidebar">
+                            <div class="product-summary pl-lg--30 pl-md--0">
+                                <div class="product-rating d-flex mb--20">
+                                </div>
+                                <h3 class="product-title mb--20">{{ product.title }}</h3>
+                                <p class="product-short-description mb--20">Donec accumsan auctor iaculis. Sed suscipit
+                                    arcu ligula, at egestas magna molestie a. Proin ac ex maximus, ultrices justo eget,
+                                    sodales orci. Aliquam egestas libero ac turpis pharetra, in vehicula lacus
+                                    scelerisque. Vestibulum ut sem laoreet, feugiat tellus at, hendrerit arcu.</p>
+                                <div class="product-price-wrapper mb--25">
+                                    <span class="money">{{ product.price }}TL</span>
+                                </div>
+                                <div
+                                    class="product-action d-flex flex-sm-row align-items-sm-center flex-column align-items-start mb--30">
+                                    <form method="post" action="{% url 'add_to_cart' products_slug=product.slug %}">
+                                        {% csrf_token %}
 
-</body>
-</html>
+                                        <div class="quantity-wrapper d-flex align-items-center mr--30 mr-xs--0 mb-xs--30">
+                                        <label class="quantity-label" for="pro-qty">Quantity:</label>
+                                        <div class="quantity">
+                                            <input type="number" name="quantity" value="1" min="1" max="10">
+                                        </div>
+                                    </div>
+                                    <button type="submit">Sepete Ekle</button>
+                                    </form>
+                                </div>
+                                <div class="product-footer-meta">
+                                    <p><span>Kategori:</span>
+                                        <a href="shop.html">{{ product.category }}</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mb--77 mb-md--57">
+                        <div class="col-12">
+                            <div class="tab-style-1">
+                                <div class="nav nav-tabs mb--35 mb-sm--25" id="product-tab" role="tablist">
+                                    <button type="button" class="nav-link active" id="nav-description-tab" data-bs-toggle="tab"
+                                        data-bs-target="#nav-description" role="tab" aria-selected="true">
+                                        <span>Ürün Hakkında</span>
+                                    </button>
+                                </div>
+                                <div class="tab-content" id="product-tabContent">
+                                    <div class="tab-pane fade show active" id="nav-description" role="tabpanel"
+                                        aria-labelledby="nav-description-tab">
+                                        <div class="product-description">
+                                            <p>{{ product.detail }} </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main Content Wrapper End -->
+
+{% endblock%}
