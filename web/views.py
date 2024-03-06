@@ -11,17 +11,18 @@ from .utils import calculate_total_price
 
 
 def homepage(request):
-    return render(request,'homepage.html',)
+    product = Products.objects.all()
+    return render(request,'pages/homepage.html',{'product': product,})
 
 
 def products(request):
     product = Products.objects.all()
-    return render(request, 'products.html',{'product': product,})
+    return render(request, 'pages/products.html',{'product': product,})
 
 
 def products_details(request,products_slug):
     product = get_object_or_404(Products, slug=products_slug)
-    return render(request, 'products_detail.html',{'product': product,})
+    return render(request, 'pages/products_detail.html',{'product': product,})
 
 
 
@@ -69,7 +70,7 @@ def view_cart(request):
     cart, created = Cart.objects.get_or_create(user=request.user)
     total_price = calculate_total_price(cart)
     cart_items = CartItem.objects.filter(cart=cart)
-    return render(request, 'cart.html', {'cart_items': cart_items, 'total_price': total_price})
+    return render(request, 'pages/cart.html', {'cart_items': cart_items, 'total_price': total_price})
 
 
 

@@ -1,12 +1,323 @@
-<!DOCTYPE html>
-<html lang="en">
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Payne - Backpack eCommerce HTML Template</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="assets/img/icon.png">
+
+    <!-- ************************* CSS Files ************************* -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{%static 'css/bootstrap.css'%}">
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="{%static 'css/vendor.css'%}">
+
+    <!-- style css -->
+    <link rel="stylesheet" href="{%static 'css/main.css'%}">
 </head>
+
 <body>
+
+    <!-- Preloader Start -->
+    <div class="ft-preloader active">
+        <div class="ft-preloader-inner h-100 d-flex align-items-center justify-content-center">
+            <div class="ft-child ft-bounce1"></div>
+            <div class="ft-child ft-bounce2"></div>
+            <div class="ft-child ft-bounce3"></div>
+        </div>
+    </div>
+    <!-- Preloader End -->
+
+    <!-- Main Wrapper Start -->
+    <div class="wrapper">
+        <!-- Header Start -->
+        <header class="header header-default site-header header-transparent">
+            <div class="header__outer">
+                <div class="header__inner header--fixed">
+                    <div class="container">
+                        <div class="header__main">
+                            <div class="header__col header__left">
+                                <a href="index.html" class="logo">
+                                    <figure class="logo--normal">
+                                        <img src="" alt="Logo">
+                                    </figure>
+                                    <figure class="logo--transparency">
+                                        <img src="" alt="Logo">
+                                    </figure>
+                                </a>
+                            </div>
+                            <div class="header__col header__center">
+                                <nav class="main-navigation d-none d-lg-block">
+                                    <ul class="mainmenu">
+                                        <li class="mainmenu__item menu-item-has-children position-relative">
+                                            <a href="{% url 'homepage'%}" class="mainmenu__link">Ana Sayfa</a>
+                                            <div class="inner-menu">
+                                            </div>
+                                        </li>
+                                        <li class="mainmenu__item menu-item-has-children position-static">
+                                            <a href="{% url 'products'%}" class="mainmenu__link">Ürünlerimiz</a>
+                                        </li>
+                                        <li class="mainmenu__item">
+                                            <a href="contact-us.html" class="mainmenu__link">İletişim</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="header__col header__right">
+                                <div class="toolbar-item d-none d-lg-block">
+                                    <a href="login-register.html" class="toolbar-btn">
+                                        <span>Giriş Yap</span>
+                                    </a>
+                                </div>
+                                <div class="toolbar-item d-block d-lg-none">
+                                    <a href="#offcanvasnav" class="hamburger-icon js-toolbar menu-btn">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </a>
+                                </div>
+
+                                <div class="toolbar-item mini-cart-btn">
+                                    <a href="#miniCart" class="toolbar-btn js-toolbar">
+                                        <span class="mini-cart-btn__icon">
+                                            <i class="flaticon-bag"></i>
+                                        </span>
+                                        <sup class="mini-cart-btn__count">
+                                            02
+                                        </sup>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-sticky-height"></div>
+            </div>
+        </header>
+        <!-- Header End -->
     {% block content%}
 
     {%endblock%}
+<!-- Footer Start-->
+        <footer class="footer bg-color pt--70 pt-xs--60" data-bg-color="#f4f8fa">
+            <div class="container">
+                <div class="row border-bottom pb--60 pb-sm--28 pb-xs--49">
+                    <div class="col footer-column-1 mb-sm--42">
+                        <div class="footer-widget">
+                            <div class="textwidget">
+                                <figure class="footer-logo mb--10">
+                                    <img src="assets/img/logo/logo.png" alt="Logo">
+                                </figure>
+                            </div>
+                            <div class="address-widget">
+                                <address>1203 Town Center Orive #L 335458 USA</address>
+                                <a href="tel:+84112345678">+841 123 456 78</a>
+                                <a href="mailto:info@company.com">info@company.com</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col footer-column-2 mb-md--33">
+                        <div class="footer-widget">
+                            <h3 class="widget-title mb--35 mb-sm--15">Store Menu</h3>
+                            <ul class="footer-menu">
+                                <li>
+                                    <a href="shop.html">
+                                        <i class="fa fa-angle-right"></i>
+                                        <span>Best Seller</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="shop.html">
+                                        <i class="fa fa-angle-right"></i>
+                                        <span>New Arrivals</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="shop.html">
+                                        <i class="fa fa-angle-right"></i>
+                                        <span>Men</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="shop.html">
+                                        <i class="fa fa-angle-right"></i>
+                                        <span>Women</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="shop.html">
+                                        <i class="fa fa-angle-right"></i>
+                                        <span>Accessories</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col footer-column-3 mb-sm--33">
+                        <div class="footer-widget">
+                            <h3 class="widget-title mb--35 mb-sm--15">Information</h3>
+                            <ul class="footer-menu">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-angle-right"></i>
+                                        <span>About Us</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-angle-right"></i>
+                                        <span>Delivery Information</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-angle-right"></i>
+                                        <span>Privacy Policy</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-angle-right"></i>
+                                        <span>Terms &amp; Conditions</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-angle-right"></i>
+                                        <span>Look Books</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col footer-column-4 mb-xs--33">
+                        <div class="footer-widget">
+                            <h3 class="widget-title mb--35 mb-sm--15">Question</h3>
+                            <div class="footer-widget">
+                                <ul class="footer-menu">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-angle-right"></i>
+                                            <span>Help</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="order-tracking.html">
+                                            <i class="fa fa-angle-right"></i>
+                                            <span>Track Order</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-angle-right"></i>
+                                            <span>Support</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="shop.html">
+                                            <i class="fa fa-angle-right"></i>
+                                            <span>Shopping &amp; Delivery</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-angle-right"></i>
+                                            <span>FAQs</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col footer-column-5">
+                        <div class="footer-widget">
+                            <h3 class="widget-title mb--35 mb-sm--15">My Account</h3>
+                            <ul class="footer-menu">
+                                <li>
+                                    <a href="my-account.html">
+                                        <i class="fa fa-angle-right"></i>
+                                        <span>My Account</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="order-tracking.html">
+                                        <i class="fa fa-angle-right"></i>
+                                        <span>Order Delivery</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="wishlist.html">
+                                        <i class="fa fa-angle-right"></i>
+                                        <span>Wishlist</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-angle-right"></i>
+                                        <span>Newsletter</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row ptb--20">
+                    <div class="col-12 text-center">
+                        <p class="copyright-text">&copy; Payne 2021 Made With <i class="fa fa-heart"></i> By
+Hasthemes</p>
+                        <div class="social space-10">
+                            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="social__link">
+                                <i class="fa fa-facebook"></i>
+                                <span class="sr-only">Facebook</span>
+                            </a>
+                            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" class="social__link">
+                                <i class="fa fa-twitter"></i>
+                                <span class="sr-only">Twitter</span>
+                            </a>
+                            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="social__link">
+                                <i class="fa fa-linkedin"></i>
+                                <span class="sr-only">Linkedin</span>
+                            </a>
+                            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="social__link">
+                                <i class="fa fa-instagram"></i>
+                                <span class="sr-only">Instagram</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Footer End-->    <!-- Qicuk View Modal End -->
+
+        <!-- Global Overlay Start -->
+        <div class="global-overlay"></div>
+        <!-- Global Overlay End -->
+
+        <!-- Scroll To Top Start -->
+        <a class="scroll-to-top" href=""><i class="fa fa-angle-double-up"></i></a>
+        <!-- Scroll To Top End -->
+    </div>
+    <!-- Main Wrapper End -->
+
+
+    <!-- ************************* JS Files ************************* -->
+
+    <!-- jQuery JS -->
+    <script src="{%static 'js/vendor.js'%}"></script>
+
+    <!-- Main JS -->
+    <script src="{%static 'js/main.js'%}"></script>
 </body>
+
 </html>

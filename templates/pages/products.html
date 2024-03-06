@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block content%}
+<!-- Breadcrumb area Start -->
+        <section class="page-title-area bg-color" data-bg-color="#f4f4f4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h1 class="page-title">Ürünlerimiz</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Breadcrumb area End -->
+
+        <!-- Main Content Wrapper Start -->
+        <div  class="main-content-wrapper">
+            <div class="shop-page-wrapper ptb--80">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="shop-products">
+                                <div class="row">
+                                    {% for prod in product%}
+                                        <div class="col-xl-4 col-sm-6 mb--50">
+                                            <div class="payne-product">
+                                                <div class="product__inner">
+                                                    <div class="product__image">
+                                                        <figure class="product__image--holder">
+                                                            <img src="{{prod.image.url}}" alt="Product">
+                                                        </figure>
+                                                        <a href="product-details.html" class="product__overlay"></a>
+                                                        <div class="product__action">
+                                                            <a data-bs-toggle="modal" data-bs-target="#productModal" class="action-btn">
+                                                                <i class="fa fa-eye"></i>
+                                                                <span class="sr-only">Gözat</span>
+                                                            </a>
+                                                            <a href="cart.html" class="action-btn">
+                                                                <i class="fa fa-shopping-cart"></i>
+                                                                <span class="sr-only">Sepete Ekle</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product__info">
+                                                        <div class="product__info--left">
+                                                            <h3 class="product__title">
+                                                                <a href="product-details.html">{{prod.title}}</a>
+                                                            </h3>
+                                                            <div class="product__price">
+                                                                <span class="money">{{prod.price}}</span>
+                                                                <span class="sign">TL</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main Content Wrapper Start -->
+
+{% endblock %}
