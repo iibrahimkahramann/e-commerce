@@ -4,14 +4,35 @@
 
 
 
-<form method="post" class="login-form">
+<section class="page-title-area bg-color" data-bg-color="#f4f4f4">
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="page-title">Kayıt Ol</h1>
+        </div>
+    </div>
+</div>
+</section>
+<!-- Breadcrumb area End -->
+<div class="main-content-wrapper">
+      <div class="page-content-inner pt--75 pb--80">
+      <div class="container">
+        <div class="row">
+            <div class="col-md-6 mb-sm--50">
+                <div class="login-box">
+                    <h3 class="heading__tertiary mb--30">Giriş Yap</h3>
+                    <form method="post" class="form form--login">
+                          {% csrf_token %}
+                          {{ form.as_div }}
+                          <button type="submit">Kayıt Ol!</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+      </div>
+      </div>
+</div>
 
-      <h2>Kayıt Ol</h2>
-
-      {% csrf_token %}
-      {{ form.as_div }}
-      <button type="submit">Kayıt Ol</button>
-</form>
 
 
 {% endblock %}

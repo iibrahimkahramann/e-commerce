@@ -2,18 +2,35 @@
 {% load static %}
 {%block content%}
 
-
-
-<form method="post" class="login-form">
-
-      <h2>Giriş Yap</h2>
-
-      {% csrf_token %}
-      {{ form.as_div }}
-      <button type="submit">Oturum Aç</button>
-      <p class="form-msg">Hesabın yok mu hemen kayıt ol  <a href="/register">Kayıt Ol</a> </p>
-
-</form>
+<section class="page-title-area bg-color" data-bg-color="#f4f4f4">
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="page-title">Giriş Yap</h1>
+        </div>
+    </div>
+</div>
+</section>
+<!-- Breadcrumb area End -->
+<div class="main-content-wrapper">
+      <div class="page-content-inner pt--75 pb--80">
+      <div class="container">
+        <div class="row">
+            <div class="col-md-6 mb-sm--50">
+                <div class="login-box">
+                    <h3 class="heading__tertiary mb--30">Giriş Yap</h3>
+                    <form method="post" class="form form--login">
+                          {% csrf_token %}
+                          {{ form.as_div }}
+                          <button type="submit">Oturum Aç</button>
+                          <p class="form-msg">Hesabın yok mu hemen kayıt ol.  <a href="/register">Kayıt Ol!</a> </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+      </div>
+      </div>
+</div>
 
 
 {% endblock %}
