@@ -2,63 +2,73 @@
 {% load static %}
 {%block content%}
 
+<!-- Breadcrumb area Start -->
+        <section class="page-title-area bg-color" data-bg-color="#f4f4f4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h1 class="page-title">My Account</h1>
+                        <ul class="breadcrumb">
+                            <li><a href="index.html">Home</a></li>
+                            <li class="current"><span>My Account</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Breadcrumb area End -->
 
-
-<h2>Kullanıcı Bilgileri</h2>
-
-
-
-<main class="lig-section">
-    <section class="hero-lig">
-        <div class="lig-main">
-            <h1>{{ request.user.username }}</h1>
+        <!-- Main Content Wrapper Start -->
+        <div class="main-content-wrapper">
+            <div class="page-content-inner ptb--80 ptb-md--60 pb-sm--55">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="user-dashboard-tab flex-column flex-md-row">
+                                <div class="user-dashboard-tab__head nav flex-md-column" role="tablist" aria-orientation="vertical">
+                                    <button type="button" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#dashboard" aria-controls="dashboard" aria-selected="true">Kullanıcı</button>
+                                    <button type="button" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#addresses" aria-controls="addresses" aria-selected="true">Adres</button>
+                                    <a class="nav-link" href="{% url 'user_logout'%}">Çıkış Yap</a>
+                                </div>
+                                <div class="user-dashboard-tab__content tab-content">
+                                    <div class="tab-pane fade show active" id="dashboard">
+                                        <p>Merhaba <strong>{{ request.user.username }}</strong> (Sen <strong>{{ request.user.username }}</strong> değil misin? <a href="{% url 'user_logout'%}">Çıkış Yap</a>)</p>
+                                        <p>From your account dashboard. you can easily check &amp; view your <a href="">recent orders</a>, manage your <a href="">shipping and billing addresses</a> and <a href="">edit your password and account details</a>.</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="orders">
+                                        <div class="message-box mb--30 d-none">
+                                            <p><i class="fa fa-check-circle"></i>No order has been made yet.</p>
+                                            <a href="shop.html">Go Shop</a>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="addresses">
+                                        <p class="mb--20">The following addresses will be used on the checkout page by default.</p>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-sm--20">
+                                                <div class="text-block">
+                                                    <h4 class="mb--20">Billing address</h4>
+                                                    <a href="">Edit</a>
+                                                    <p>You have not set up this type of address yet.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="text-block">
+                                                    <h4 class="mb--20">Shopping address</h4>
+                                                    <a href="">Edit</a>
+                                                    <p>You have not set up this type of address yet.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
-</main>
+        <!-- Main Content Wrapper Start -->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-        <h2>{{ product.name }} Details</h2>
-        <p>Category: {{ product.category }}</p>
-        <p>Price: ${{ product.price }}</p>
-        <p>Description: {{ product.description }}</p>
-        <p>İmage: <img src="{{product.image.url}}" alt=""></p>
-
-        <form method="post" action="{% url 'add_to_cart' products_slug=product.slug %}">
-            {% csrf_token %}
-            <input type="number" name="quantity" value="1" min="1" max="10"> <!-- Örnek: 1 ile 10 arasında bir değer -->
-            <button type="submit">Sepete Ekle</button>
-        </form>
-
-
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-        <h2>{{ product.name }} Details</h2>
-        <p>Category: {{ product.category }}</p>
-        <p>Price: ${{ product.price }}</p>
-        <p>Description: {{ product.description }}</p>
-        <p>İmage: <img src="{{product.image.url}}" alt=""></p>
-
-        <form method="post" action="{% url 'add_to_cart' products_slug=product.slug %}">
-            {% csrf_token %}
-            <input type="number" name="quantity" value="1" min="1" max="10"> <!-- Örnek: 1 ile 10 arasında bir değer -->
-            <button type="submit">Sepete Ekle</button>
-        </form>
-
-
-</body>
-</html>
 
 
 {% endblock %}
