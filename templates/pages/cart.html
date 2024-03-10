@@ -1,26 +1,166 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+{%block content%}
+<!-- Breadcrumb area Start -->
+        <section class="page-title-area bg-color" data-bg-color="#f4f4f4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h1 class="page-title">Sepet</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Breadcrumb area End -->
 
-    <h2>Sepet</h2>
+        <!-- Main Content Wrapper Start -->
+        <div class="main-content-wrapper">
+            <div class="page-content-inner ptb--80 pt-md--40 pb-md--60">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mb-md--50">
+                            <form class="cart-form" action="#">
+                                <div class="row g-0">
+                                    <div class="col-12">
+                                        <div class="table-content table-responsive">
+                                            <table class="table text-center">
+                                                <thead>
+                                                    <tr>
+                                                        <th>&nbsp;</th>
+                                                        <th>&nbsp;</th>
+                                                        <th class="text-start">Ürün</th>
+                                                        <th>Ücret</th>
+                                                        <th>Adet</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% if cart_items %}
+                                                    {% for item in cart_items %}
+                                                        <tr>
+                                                            <td class="product-remove text-start"><button onclick="removeFromCart('{{ item.product.slug }}', 1)">Sepetten Çıkar</button></a></td>
+                                                            <td class="product-thumbnail text-start">
+                                                                <img src="{{item.product.image.url}}" alt="Product Thumnail">
+                                                            </td>
+                                                            <td class="product-name text-start wide-column">
+                                                                <h3>
+                                                                    <a href="product-details.html">{{ item.product.title }}</a>
+                                                                </h3>
+                                                            </td>
+                                                            <td class="product-price">
+                                                                <span class="product-price-wrapper">
+                                                                    <span class="money">{{ item.product.price }}TL</span>
+                                                                </span>
+                                                            </td>
+                                                            <td class="product-quantity">
+                                                                <form method="post" action="">
+                                                                    {% csrf_token %}
+                                                                    <div class="quantity-wrapper d-flex align-items-center mr--30 mr-xs--0 mb-xs--30">
+                                                                    <label class="quantity-label" for="pro-qty">Adet:</label>
+                                                                    <div class="quantity">
+                                                                        <input type="number" name="quantity" value="{{item.quantity}}" min="1" max="50">
+                                                                    </div>
+                                                                </div>
+                                                                <button onclick="addToCart('{{ item.product.slug }}', 1)">Sepete Ekle</button>
+                                                                </form>
+                                                            </td>
+                                                              {% endfor %}
+                                                            {% else %}
+                                                            <h1>Sepetiniz boş.</h1>
+                                                        {% endif %}
+                                                        </tr>
 
-{% if cart_items %}
-    <ul>
-        {% for item in cart_items %}
-            <li>
-                {{ item.product_id.title }} - Adet: {{ item.quantity }} - Fiyat: ${{ item.product_id.price }}
-            </li>
-        {% endfor %}
-    </ul>
 
-    <p>Total Price: ${{ total_price }}</p>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="cart-collaterals">
+                                <div class="cart-totals">
+                                    <h5 class="font-size-14 font-bold mb--15">Cart totals</h5>
+                                    <div class="cart-calculator">
+                                        <div class="cart-calculator__item order-total">
+                                            <div class="cart-calculator__item--head">
+                                                <span>Toplam Ücret</span>
+                                            </div>
+                                            <div class="cart-calculator__item--value">
+                                                <span class="product-price-wrapper">
+                                                    <span class="money">{{ total_price }} TL</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="checkout.html" class="btn btn-size-md btn-shape-square btn-fullwidth">
+                                    Proceed To Checkout
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main Content Wrapper Start -->
 
-{% else %}
-    <p>Sepetiniz boş.</p>
-{% endif %}
-</body>
-</html>
+
+<script>
+function addToCart(productSlug) {
+    var quantity = parseInt(prompt('Kaç adet eklemek istiyorsunuz?', 1));
+
+    if (isNaN(quantity) || quantity < 1) {
+        alert('Geçerli bir miktar giriniz.');
+        return;
+    }
+
+    $.ajax({
+        url: '/add_to_cart/' + productSlug + '/',
+        method: 'POST',
+        data: { quantity: quantity, csrfmiddlewaretoken: '{{ csrf_token }}' },
+        dataType: 'json',
+        success: function(response) {
+            if (response.success) {
+                alert(response.message);
+                location.reload();
+            } else {
+                alert('Ürün eklenirken bir hata oluştu.');
+            }
+        },
+        error: function() {
+            alert('Sunucu hatası. Lütfen tekrar deneyin.');
+        }
+    });
+}
+
+function removeFromCart(productSlug) {
+    var quantity = parseInt(prompt('Kaç adet çıkartmak istiyorsunuz?', 1));
+
+    if (isNaN(quantity) || quantity < 1) {
+        alert('Geçerli bir miktar giriniz.');
+        return;
+    }
+
+    $.ajax({
+        url: '/remove_from_cart/' + productSlug + '/',
+        method: 'POST',
+        data: { quantity: quantity, csrfmiddlewaretoken: '{{ csrf_token }}' },
+        dataType: 'json',
+        success: function(response) {
+            if (response.success) {
+                alert(response.message);
+                location.reload();
+            } else {
+                alert('Ürün çıkarılırken bir hata oluştu.');
+            }
+        },
+        error: function() {
+            alert('Sunucu hatası. Lütfen tekrar deneyin.');
+        }
+    });
+}
+
+</script>
+
+{% endblock %}

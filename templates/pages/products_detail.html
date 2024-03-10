@@ -64,7 +64,7 @@
                                             <input type="number" name="quantity" value="1" min="1" max="10">
                                         </div>
                                     </div>
-                                    <button type="submit">Sepete Ekle</button>
+                                    <button type="button" onclick="addToCart('{{ product.slug }}')">Sepete Ekle</button>
                                     </form>
                                 </div>
                                 <div class="product-footer-meta">
@@ -99,5 +99,33 @@
             </div>
         </div>
         <!-- Main Content Wrapper End -->
+
+<script>
+function addToCart(productSlug) {
+    var quantity = parseInt(prompt('Kaç adet eklemek istiyorsunuz?', 1));
+
+    if (isNaN(quantity) || quantity < 1) {
+        alert('Geçerli bir miktar giriniz.');
+        return;
+    }
+
+    $.ajax({
+        url: '/add_to_cart/' + productSlug + '/',
+        method: 'POST',
+        data: { quantity: quantity, csrfmiddlewaretoken: '{{ csrf_token }}' },
+        dataType: 'json',
+        success: function(response) {
+            if (response.success) {
+                alert('Ürün sepete eklenmiştir.');
+            } else {
+                alert('Ürün eklenirken bir hata oluştu.');
+            }
+        },
+        error: function() {
+            alert('Sunucu hatası. Lütfen tekrar deneyin.');
+        }
+    });
+}
+</script>
 
 {% endblock%}

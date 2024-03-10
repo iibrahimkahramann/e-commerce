@@ -11,6 +11,7 @@
     <!-- Favicons -->
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="assets/img/icon.png">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <!-- ************************* CSS Files ************************* -->
 
@@ -93,13 +94,10 @@
                                 </div>
 
                                 <div class="toolbar-item mini-cart-btn">
-                                    <a href="#miniCart" class="toolbar-btn js-toolbar">
+                                    <a href="{% url 'view_cart' %}" class="toolbar-btn js-toolbar">
                                         <span class="mini-cart-btn__icon">
                                             <i class="flaticon-bag"></i>
                                         </span>
-                                        <sup class="mini-cart-btn__count">
-                                            02
-                                        </sup>
                                     </a>
                                 </div>
                             </div>

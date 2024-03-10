@@ -1,13 +1,13 @@
-from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Category,Products, Cart, CartItem
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
 from .forms import CustomUserCreationForm, CustomAuthenticationForm
 from django.db import models
 from django.shortcuts import render
 from .utils import calculate_total_price
+from django.http import JsonResponse
+
 
 
 def homepage(request):
@@ -89,18 +89,25 @@ def add_to_cart(request, products_slug):
     if not item_created:
         cart_item.quantity += quantity
         cart_item.save()
-    return redirect('view_cart')
+
+    return JsonResponse({'success': True, 'message': 'Ürün sepete eklendi.'})
+
 
 @login_required
-def remove_from_cart(request, products_slug):
-    product = get_object_or_404(Products, slug=products_slug)
+def remove_from_cart(request, product_slug):
+    product = get_object_or_404(Products, slug=product_slug)
     cart = Cart.objects.get(user=request.user)
     cart_item = CartItem.objects.get(cart=cart, product=product)
 
-    if cart_item.quantity > 1:
-        cart_item.quantity -= 1
-        cart_item.save()
-    else:
-        cart_item.delete()
+    if request.method == 'POST':
+        quantity = int(request.POST.get('quantity', 1))
 
-    return redirect('view_cart')
+        if quantity < cart_item.quantity:
+            cart_item.quantity -= quantity
+            cart_item.save()
+            return JsonResponse({'success': True, 'message': 'Ürün sepetten kısmen çıkarıldı'})
+        else:
+            cart_item.delete()
+            return JsonResponse({'success': True, 'message': 'Ürün sepetten tamamen çıkarıldı'})
+
+    return JsonResponse({'success': False, 'message': 'Geçersiz istek'})
