@@ -89,6 +89,9 @@ def add_to_cart(request, products_slug):
     if not item_created:
         cart_item.quantity += quantity
         cart_item.save()
+    else:
+        cart_item.quantity = quantity
+        cart_item.save()
 
     return JsonResponse({'success': True, 'message': 'Ürün sepete eklendi.'})
 

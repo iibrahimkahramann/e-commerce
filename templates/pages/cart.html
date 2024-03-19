@@ -60,7 +60,7 @@
                                                                         <input type="number" name="quantity" value="{{item.quantity}}" min="1" max="50">
                                                                     </div>
                                                                 </div>
-                                                                <button onclick="addToCart('{{ item.product.slug }}', 1)">Sepete Ekle</button>
+                                                                <button onclick="addToCart('{{ item.product.slug }}',)">Sepete Ekle</button>
                                                                 </form>
                                                             </td>
                                                               {% endfor %}
@@ -80,7 +80,7 @@
                         <div class="col-lg-4">
                             <div class="cart-collaterals">
                                 <div class="cart-totals">
-                                    <h5 class="font-size-14 font-bold mb--15">Cart totals</h5>
+                                    <h5 class="font-size-14 font-bold mb--15">Sepet Toplamı</h5>
                                     <div class="cart-calculator">
                                         <div class="cart-calculator__item order-total">
                                             <div class="cart-calculator__item--head">
@@ -95,7 +95,7 @@
                                     </div>
                                 </div>
                                 <a href="checkout.html" class="btn btn-size-md btn-shape-square btn-fullwidth">
-                                    Proceed To Checkout
+                                    Siparişi Tamamla
                                 </a>
                             </div>
                         </div>
